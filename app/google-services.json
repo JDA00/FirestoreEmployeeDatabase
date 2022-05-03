@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "562693599244",
+    "project_id": "firestoreemployeedatabase",
+    "storage_bucket": "firestoreemployeedatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562693599244:android:4aecb3d18bb5f1f2a67e29",
+        "android_client_info": {
+          "package_name": "com.jda00.android.firestoreemployeedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562693599244-njf0ia4o8qd3kffp32md92rpvpgq9p0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBli9yfARSdT3WtTR3v6aVDdnkaAdJYCvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562693599244-njf0ia4o8qd3kffp32md92rpvpgq9p0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
