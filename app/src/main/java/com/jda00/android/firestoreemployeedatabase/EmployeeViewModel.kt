@@ -6,18 +6,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
 import javax.inject.Inject
-import com.jda00.android.firestoreemployeedatabase.repo.EmployeeRepo
+
 
 @HiltViewModel
 class EmployeeViewModel @Inject constructor(
 
-    private val addEmployee: AddEmployee,
-    private val getEmployee: GetEmployee,
-    private val deleteEmployee: DeleteEmployee
+    private val crudUtils : CRUDUtils
 
 
 ) : ViewModel() {
@@ -32,32 +28,31 @@ class EmployeeViewModel @Inject constructor(
     val isEmployeeDeletedState: State<Response<Void?>> = _isEmployeeDeletedState
 
     init {
-        getEmployees()
+        getEmployee()
     }
 
-    private fun getEmployees() {
+    private fun getEmployee() {
         viewModelScope.launch {
-            getEmployee().collect { response ->
+            crudUtils.getEmployee().collect { response ->
                 _employeeState.value = response
             }
         }
     }
 
-    fun addEmployees(name: String, position: String) {
+    fun addEmployee(name: String, position: String) {
         viewModelScope.launch {
-            addEmployee(name, position).collect { response ->
+           crudUtils.addEmployee(name, position).collect { response ->
                 _isEmployeeAddedState.value = response
             }
         }
     }
 
-    fun deleteEmployees(employeeId: String) {
+    fun deleteEmployee(employeeId: String) {
         viewModelScope.launch {
-            deleteEmployee(employeeId).collect { response ->
+           crudUtils.deleteEmployee(employeeId).collect { response ->
                 _isEmployeeDeletedState.value = response
             }
         }
     }
 }
 
-//TODO: Move these out of ViewModel

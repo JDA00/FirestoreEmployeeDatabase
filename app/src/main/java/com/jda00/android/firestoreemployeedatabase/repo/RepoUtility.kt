@@ -37,6 +37,7 @@ class RepoUtility @Inject constructor(
 
     override suspend fun addEmployee(name: String, position: String) = flow {
         try {
+            emit(Loading)
             val employeeId = employeeRef.document().id
             val employee = Employee(
                 id = employeeId,
@@ -45,6 +46,7 @@ class RepoUtility @Inject constructor(
 
             )
             val addition = employeeRef.document(employeeId).set(employee).await()
+            emit(Success(addition))
         } catch (e: Exception) {
             emit(Error(e.message ?: e.toString()))
         }
@@ -52,7 +54,9 @@ class RepoUtility @Inject constructor(
 
     override suspend fun deleteEmployee(employeeId: String) = flow {
         try {
+            emit(Loading)
             val deletion = employeeRef.document(employeeId).delete().await()
+            emit(Success(deletion))
         } catch (e: Exception) {
             emit(Error(e.message ?: e.toString()))
         }
